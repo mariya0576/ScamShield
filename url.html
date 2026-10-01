@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>URL Analyzer | ScamShield</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <a href="/" class="back-button">← Back to Home</a>
+
+        <div class="logo">
+            SCAM<span>SHIELD</span>
+        </div>
+
+        <p class="tagline">Detect. Understand. Stay Safe.</p>
+
+        <h2>URL ANALYZER</h2>
+
+        <p class="analyzer-subtitle">
+            Check suspicious links for potential scam indicators.
+        </p>
+
+        <div class="text-analyzer-box">
+
+            <form method="POST">
+
+                <label for="url">Paste the URL below</label>
+
+                <input
+                    type="url"
+                    id="url"
+                    name="url"
+                    value="{{ url }}"
+                    placeholder="https://example.com"
+                    required
+                >
+
+                <button class="analyze-button" type="submit">
+                    ANALYZE URL →
+                </button>
+
+            </form>
+
+        </div>
+
+
+        {% if result %}
+
+        <div class="analysis-result">
+
+            <h3>ANALYSIS RESULT</h3>
+
+            <div class="risk-level">
+                {{ result.level }}
+            </div>
+
+            <div class="risk-score">
+                Risk Score: <strong>{{ result.score }}/100</strong>
+            </div>
+
+
+            <div class="indicators">
+
+                <h4>Detected Indicators</h4>
+
+                {% for indicator in result.indicators %}
+
+                <div class="indicator">
+                    ⚠ {{ indicator }}
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <div class="recommendation">
+
+                <h4>Safety Recommendation</h4>
+
+                <p>
+                    {{ result.recommendation }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </main>
+
+</body>
+
+</html>

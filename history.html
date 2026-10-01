@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>History | ScamShield</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+    <main class="container">
+
+        <a href="/" class="back-button">
+            ← Back to Home
+        </a>
+
+
+        <div class="logo">
+            SCAM<span>SHIELD</span>
+        </div>
+
+
+        <p class="tagline">
+            Detect. Understand. Stay Safe.
+        </p>
+
+
+        <h2>
+            ANALYSIS HISTORY
+        </h2>
+
+
+        <p class="analyzer-subtitle">
+            View your previous ScamShield analyses.
+        </p>
+
+
+        <div class="history-box">
+
+
+            {% if records %}
+
+
+                {% for record in records %}
+
+                <div class="history-card">
+
+
+                    <div class="history-top">
+
+                        <span class="history-type">
+                            {{ record["analyzer_type"] }}
+                        </span>
+
+                        <span class="history-date">
+                            {{ record["created_at"] }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="history-content">
+
+                        <h4>
+                            Analyzed
+                        </h4>
+
+                        <div class="analyzed-content">
+
+                            {% if record["analyzed_content"] %}
+
+                                {{ record["analyzed_content"] }}
+
+                            {% else %}
+
+                                Original input not available for this older analysis.
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="history-risk">
+
+                        <span>
+                            {{ record["risk_level"] }}
+                        </span>
+
+                        <strong>
+                            {{ record["risk_score"] }}/100
+                        </strong>
+
+                    </div>
+
+
+                    <div class="history-indicators">
+
+                        <h4>
+                            Detected Indicators
+                        </h4>
+
+
+                        {% for indicator in record["indicators"].split("\n") %}
+
+                        <div class="indicator">
+                            ⚠ {{ indicator }}
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="history-recommendation">
+
+                        <h4>
+                            Safety Recommendation
+                        </h4>
+
+                        <p>
+                            {{ record["recommendation"] }}
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        method="POST"
+                        action="/delete-history/{{ record['id'] }}"
+                        class="delete-form"
+                    >
+
+                        <button
+                            type="submit"
+                            class="delete-button"
+                        >
+                            🗑 Delete
+                        </button>
+
+                    </form>
+
+
+                </div>
+
+                {% endfor %}
+
+
+            {% else %}
+
+
+                <div class="empty-history">
+
+                    <div class="empty-icon">
+                        📂
+                    </div>
+
+                    <h3>
+                        No Analysis History
+                    </h3>
+
+                    <p>
+                        Your completed analyses will appear here.
+                    </p>
+
+                </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

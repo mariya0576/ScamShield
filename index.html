@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ScamShield</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+    <main class="container">
+
+        <div class="logo">
+            SCAM<span>SHIELD</span>
+        </div>
+
+        <p class="tagline">
+            Detect. Understand. Stay Safe.
+        </p>
+
+
+        <h2>
+            What would you like to analyze?
+        </h2>
+
+
+        <div class="analyzer-grid">
+
+
+            <a href="/text" class="analyzer-card">
+
+                <div class="icon">
+                    💬
+                </div>
+
+                <div class="card-title">
+                    TEXT
+                </div>
+
+                <div class="card-description">
+                    Analyze suspicious messages and text
+                </div>
+
+            </a>
+
+
+            <a href="/url" class="analyzer-card">
+
+                <div class="icon">
+                    🔗
+                </div>
+
+                <div class="card-title">
+                    URL
+                </div>
+
+                <div class="card-description">
+                    Check links for suspicious patterns
+                </div>
+
+            </a>
+
+
+            <a href="/email" class="analyzer-card">
+
+                <div class="icon">
+                    📧
+                </div>
+
+                <div class="card-title">
+                    EMAIL
+                </div>
+
+                <div class="card-description">
+                    Examine emails for scam indicators
+                </div>
+
+            </a>
+
+
+            <a href="/document" class="analyzer-card">
+
+                <div class="icon">
+                    📄
+                </div>
+
+                <div class="card-title">
+                    DOCUMENT
+                </div>
+
+                <div class="card-description">
+                    Scan documents for potential threats
+                </div>
+
+            </a>
+
+
+        </div>
+
+
+        <div class="home-links">
+
+
+
+            <a href="/history" class="history-link">
+
+                <span class="history-link-icon">
+                    📋
+                </span>
+
+                <span>
+                    Analysis History
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

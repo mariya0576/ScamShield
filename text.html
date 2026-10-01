@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Text Analyzer | ScamShield</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <a href="/" class="back-button">← Back to Home</a>
+
+        <div class="logo">
+            SCAM<span>SHIELD</span>
+        </div>
+
+        <p class="tagline">Detect. Understand. Stay Safe.</p>
+
+        <h2>TEXT ANALYZER</h2>
+
+        <p class="analyzer-subtitle">
+            Analyze suspicious messages and discover potential scam indicators.
+        </p>
+
+        <div class="text-analyzer-box">
+
+            <form method="POST">
+
+                <label for="message">Paste your message below</label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Example: Congratulations! You have won a prize. Click this link to claim it..."
+                    required
+                >{{ message }}</textarea>
+
+                <button class="analyze-button" type="submit">
+                    ANALYZE MESSAGE →
+                </button>
+
+            </form>
+
+        </div>
+
+
+        {% if result %}
+
+        <div class="analysis-result">
+
+            <h3>ANALYSIS RESULT</h3>
+
+            <div class="risk-level">
+                {{ result.level }}
+            </div>
+
+            <div class="risk-score">
+                Risk Score: <strong>{{ result.score }}/100</strong>
+            </div>
+
+
+            <div class="indicators">
+
+                <h4>Detected Indicators</h4>
+
+                {% if result.indicators %}
+
+                    {% for indicator in result.indicators %}
+
+                        <div class="indicator">
+                            ⚠ {{ indicator }}
+                        </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="indicator">
+                        No common scam indicators detected.
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="recommendation">
+
+                <h4>Safety Recommendation</h4>
+
+                <p>
+                    {{ result.recommendation }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </main>
+
+</body>
+
+</html>
