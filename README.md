@@ -34,17 +34,3 @@ ScamShield uses trained machine-learning models to analyze suspicious content an
 ## Author
 
 **Mariya Ansari**
-
-## Screenshots
-
-### Home Page
-![Home Page](Screenshot%202026-10-01%20155459.png)
-
-### Text Analysis
-![Text Analysis](Screenshot%202026-10-01%20155540.png)
-
-### URL Analysis
-![URL Analysis](Screenshot%202026-10-01%20155606.png)
-
-### Email Analysis
-![Email Analysis](Screenshot%202026-10-01%20155702.png)
